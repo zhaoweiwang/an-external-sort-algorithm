@@ -4,6 +4,7 @@
 加注日期：	2014-3-21
 描述：		实现基数排序
 ********************************************************/
+
 #include "Head.h"
 #include "MySort.h"
 
@@ -13,9 +14,9 @@
 输入：	参数1： double数组	参数2： 浮点数数量
 输出：   无
 */
-void MySort(RadixData * DouBuf, int DouNums){
+void MySort(RadixData *DouBuf, int DouNums){
 
-	union RadixData * Data = new RadixData[DouNums];
+	union RadixData *Data = new RadixData[DouNums];
 
 	const int BitNums = 256;
 
@@ -24,7 +25,7 @@ void MySort(RadixData * DouBuf, int DouNums){
 	for(int i = 0; i < DouNums; i++){
 	
 		if(DouBuf[i].Dou >= 0)
-			DouBuf[i].Byte[7] += 128;	//将正数的符号位赋为1
+			DouBuf[i].Byte[7] += 128;						//将正数的符号位赋为1
 		else
 			for(int j = 0; j < sizeof(double); j++)
 				DouBuf[i].Byte[j] = ~(DouBuf[i].Byte[j]);	//将负数按位取反
@@ -37,10 +38,10 @@ void MySort(RadixData * DouBuf, int DouNums){
 		DouBuf = Temp;
 
 		for(int j = 0; j < BitNums; j++)
-			Byt[j] = 0;	//初始化
+			Byt[j] = 0;
 
 		for(int j = 0; j < DouNums; j++)
-			Byt[Data[j].Byte[i]]++;	//记录每个字节等于Number的浮点数
+			Byt[Data[j].Byte[i]]++;
 
 		Byt[BitNums - 1] = DouNums - Byt[BitNums - 1];
 
