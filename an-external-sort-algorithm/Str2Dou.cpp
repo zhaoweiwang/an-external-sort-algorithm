@@ -4,6 +4,7 @@
 加注日期：	2014-3-21
 描述：		外排程序的读取数据模块，实现读取数据块功能；
 ********************************************************/
+
 #include "Head.h"
 #include "Str2Dou.h"
 
@@ -177,40 +178,30 @@ int judge(string str, int len){
 */
 int Str2Dou(char *DataBuf, double *DouBuf){
 
-	int DouNums = 0;	//记录合法双精度浮点数
+	int DouNums = 0;
+	int StrSize = 0;
+	char *p = DataBuf;
 
-	char *p = DataBuf;	//获取DataBuf缓冲区的首地址
+	char StrTemp[25] = {0};
 
-	int StrSize = 0;	//合法双精度浮点数字符串的长度
-
-	char StrTemp[25] = {0};	//临时字符串变量
-
-	//while(*p != '\n' && *p != ' ' && *p != '\t' && *p != '\0'){
 	while(*p != '\n' && *p != '\0'){
 	
-		StrTemp[StrSize] = *p;	//假如字符合法，将其存入
+		StrTemp[StrSize] = *p;
 		StrSize++;
 		p++;
 
-		//if(*p == '\n' || *p == ' ' || *p == '\t'){
 		if(*p == '\n'){
 
 			p++;
-			//if(*p == '\n' || *p == ' ' || *p == '\t'){
-			//
-			//	cout << "文件出现双空格（回车等）情况，文件格式不合法..." << endl;
-			//	return 0;
-			//}else{
 
 			if(!(judge(StrTemp, StrSize))){
 				
-				//cout << "非法字符串： " << StrTemp << endl;
 				BadStr[BadStrCount++] = StrTemp;
 				
 				for(int j = 0; j < StrSize; j++)
-					StrTemp[j] = 0;	//清空StrTemp字符串的内容
+					StrTemp[j] = 0;
 
-				StrSize = 0;	//清零Size
+				StrSize = 0;
 			
 			}else{
 			
@@ -220,19 +211,17 @@ int Str2Dou(char *DataBuf, double *DouBuf){
 					break;
 				}
 
-				DouBuf[DouNums] = Str2DouPro(StrTemp);	//转化该合法浮点数
-				//cout << "DoubleBuffer[" << DouNums << "]: " << DouBuf[DouNums] << endl;
+				DouBuf[DouNums] = Str2DouPro(StrTemp);
 
 				for(int j = 0; j < StrSize; j++)
-					StrTemp[j] = 0;	//清空StrTemp字符串的内容
+					StrTemp[j] = 0;
 
-				StrSize = 0;	//清零Size
-				DouNums++;	//计数器+1
-				//cout << "DoubleNumbers: " << DouNums << endl;
+				StrSize = 0;
+				DouNums++;
 			}
 		}
 	}
 
 	DouBuf[DouNums] = Str2DouPro(StrTemp);
-	return DouNums+1;	//返回浮点数数目
+	return DouNums+1;
 }
