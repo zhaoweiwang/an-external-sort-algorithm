@@ -27,7 +27,7 @@ double Str2DouPro(char * StrTemp){
 	bool ZeroFlag = false;
 
 
-	char * p = StrTemp;	//获取字符串首地址
+	char *p = StrTemp;	//获取字符串首地址
 
 	//先判断符号
 	if(*p == '+' || *p == '-'){
@@ -80,14 +80,13 @@ double Str2DouPro(char * StrTemp){
 				if(TenCount == 11)
 					if(*p == '5')
 						*p = '6';
-				//cout << *p << endl;
 
 			}
 
 			DouFlag *= 0.1;
 			DouValue += (*p - '0')*DouFlag;
 			p++;
-			//cout << DouValue << endl;
+
 		}
 	}
 
@@ -118,6 +117,7 @@ double Str2DouPro(char * StrTemp){
 			
 			Ex = Ex * 10 + (*p - '0');
 			p++;
+
 		}
 		
 		while(1){
@@ -128,6 +128,7 @@ double Str2DouPro(char * StrTemp){
 			if(Ex == 0)
 				break;
 			DouFlag *= DouFlag;
+
 		}
 	}
 	
