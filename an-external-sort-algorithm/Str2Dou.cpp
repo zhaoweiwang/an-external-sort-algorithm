@@ -175,11 +175,11 @@ int judge(string str, int len){
 输入：	参数1：字符串数据块	参数2：double数据块
 输出：   返回double数组中的数据量
 */
-int Str2Dou(char * DataBuf, double * DouBuf){
+int Str2Dou(char *DataBuf, double *DouBuf){
 
 	int DouNums = 0;	//记录合法双精度浮点数
 
-	char * p = DataBuf;	//获取DataBuf缓冲区的首地址
+	char *p = DataBuf;	//获取DataBuf缓冲区的首地址
 
 	int StrSize = 0;	//合法双精度浮点数字符串的长度
 

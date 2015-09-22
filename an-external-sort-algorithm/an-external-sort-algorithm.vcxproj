@@ -78,6 +78,23 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Dou2Str.cpp" />
+    <ClCompile Include="ESort.cpp" />
+    <ClCompile Include="Head.cpp" />
+    <ClCompile Include="MemorySort.cpp" />
+    <ClCompile Include="Merge.cpp" />
+    <ClCompile Include="MySort.cpp" />
+    <ClCompile Include="OutPut.cpp" />
+    <ClCompile Include="Str2Dou.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Dou2Str.h" />
+    <ClInclude Include="Head.h" />
+    <ClInclude Include="MemorySort.h" />
+    <ClInclude Include="Merge.h" />
+    <ClInclude Include="MySort.h" />
+    <ClInclude Include="OutPut.h" />
+    <ClInclude Include="Str2Dou.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

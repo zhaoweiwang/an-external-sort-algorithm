@@ -11,6 +11,7 @@ union RadixData{
 
 	double Dou;
 	unsigned char Byte[sizeof(double)];
+
 };
 
 /*
