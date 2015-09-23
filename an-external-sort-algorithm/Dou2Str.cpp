@@ -147,9 +147,7 @@ int Dou2Str(char * StrBuf, double Num){
 	DouResolve(&Num, &Rec);  
 	// ´òÓ¡¸ºÊý·ûºÅ  
 	if(Rec.negative) *ps++ = '-';  
-	//cout << "CCCC:" << pd << endl;
-	//cout << "DDDD:" << Rec.digits << endl;
-	// NAN or INF  
+ 
 	if(*pd > '9')                 
 	{  
 		memcpy(ps, pd, 4);  
