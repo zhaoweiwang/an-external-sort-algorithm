@@ -1,8 +1,8 @@
 /********************************************************
-文件名：		Str2Dou.h
-创建人：		zhaoweiwang
-加注日期：	2014-3-27
-描述：		实现判断字符串为合法字符串，并将其转化为double数据；
+filename：		Str2Dou.h
+author：		Mako Wan
+date：	2014-3-27
+description：		实现判断字符串为合法字符串，并将其转化为double数据；
 ********************************************************/
 #ifndef STR2DOU_H
 #define STR2DOU_H

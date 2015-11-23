@@ -1,16 +1,16 @@
 /********************************************************
-文件名：		TempFileName.h
-创建人：		zhaoweiwang
-加注日期：	2014-3-21
-描述：		获得临时文件名字符串
+filename：		TempFileName.h
+author：		Mako Wan
+date：	2014-3-21
+description：		获得临时filename字符串
 ********************************************************/
 #ifndef TEMPFILENAME_H
 #define TEMPFILENAME_H
 /*
 函数名：	TempFileName
-功能：	获得临时文件名字符串
-输入：	临时文件名的尾数
-输出：   文件名
+功能：	获得临时filename字符串
+输入：	临时filename的尾数
+输出：   filename
 */
 char * TempFileName(int Index);
 

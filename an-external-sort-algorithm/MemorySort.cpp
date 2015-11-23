@@ -1,8 +1,8 @@
 /********************************************************
-文件名：		MemorySort.cpp
-创建人：		zhaoweiwang
-加注日期：	2014-3-21
-描述：		外排程序的读取数据模块，实现读取数据块功能；
+filename：		MemorySort.cpp
+author：		Mako Wan
+date：	2014-3-21
+description：		外排程序的读取数据模块，实现读取数据块功能；
 ********************************************************/
 
 #include "Head.h"
@@ -33,8 +33,8 @@ HANDLE MyHandle[2];
 
 /*
 函数名：	MemorySort
-功能：	获取文件名，将其分块排序
-输入：	文件名
+功能：	获取filename，将其分块排序
+输入：	filename
 输出：   返回分割文件数量块
 */
 int MemorySort(char * InFileName, char * OutFileNameTemp){

@@ -1,9 +1,23 @@
 # an-external-sort-algorithm
-An implement case: external sort algorithm with 250 million double-precision floating-point number using C++.
+** An implement case: external sort algorithm with 250 million double-precision floating-point number(by C++). **
 
 **keywords:**  external-sort multithreading dou2str radix-sorting merge-sort tree-of-loser high-precision block-fetch
 
+**数据：**
+```C++
+3.603860899499E-268
+3.744261471778E-225
+2.071964576425E74
+1.241726032488E138
+-5.7571698334E-134
+-2.53761210755E144
+```
 
+**时间：**
+一百万：0.861秒
+一千万：7.087秒
+五千万：43.69秒
+二点五亿：211.707秒
 
 ### **缺点**
 

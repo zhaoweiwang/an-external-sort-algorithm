@@ -1,8 +1,8 @@
 /********************************************************
-文件名：		ESort.cpp
-创建人：		zhaoweiwang
-加注日期：	2014-3-27
-描述：		外排程序的主函数
+filename：		ESort.cpp
+author：			Mako Wan
+date：			2014-3-27
+description：	外排程序的主函数
 ********************************************************/
 
 #include "Head.h"
@@ -48,7 +48,7 @@ int main(int argc, char * argv[]){
 	LoserTree Ls;
 	External b;
 
-	//Starting The Game Clock.
+	//Starting The Time Clock.
 	clock_t Start, Finish;
 	double TotalTime;
 
@@ -58,7 +58,7 @@ int main(int argc, char * argv[]){
 
 	Start = clock();
 
-	FileNums = MemorySort(InFileName, OutFileNameTemp);		//Read & sort & output`s module.
+	FileNums = MemorySort(InFileName, OutFileNameTemp);		//Read & sort & output intermediate file`s module.
 
 	cout << "\n文件块总数：" << FileNums <<  "块." <<  endl;
 
@@ -72,7 +72,7 @@ int main(int argc, char * argv[]){
 		Ls = new int[FileNums];
 		b = new double[FileNums + 1];
 		cout << "准备开始merge." << endl;
-		Merge(b, FileNums, Ls, OutFileNameTemp);
+		Merge(b, FileNums, Ls, OutFileNameTemp);	//Merge module
 		cout << "已经完成merge." << endl;
 
 		delete []Ls;
@@ -83,6 +83,8 @@ int main(int argc, char * argv[]){
 	TotalTime = (double)(Finish - Start) / CLOCKS_PER_SEC;
 	cout << "\n总运行时间为:" << TotalTime << "秒.\n" << endl;
 
+
+	//输出不合法双精度浮点数
 	if(BadStrCount){
 
 		cout << "总共有非法字符串:" << BadStrCount << "个." << endl; 

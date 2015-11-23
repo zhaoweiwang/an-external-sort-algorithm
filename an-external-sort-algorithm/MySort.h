@@ -1,8 +1,8 @@
 /********************************************************
-文件名：		MySort.h
-创建人：		zhaoweiwang
-加注日期：	2014-3-21
-描述：		实现基数排序
+filename：		MySort.h
+author：		Mako Wan
+date：	2014-3-21
+description：		实现基数排序
 ********************************************************/
 #ifndef MYSORT_H
 #define MYSORT_H
