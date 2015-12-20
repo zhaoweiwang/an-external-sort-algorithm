@@ -95,13 +95,10 @@ int main(int argc, char * argv[]){
 
 		}
 		cout << "=====================" << endl;
-
 	}
 	else
 		cout << "测试数据不含有非法字符串.\n=====================" << endl; 
 
 	cin.get();
-
 	return 0;
-
 }
