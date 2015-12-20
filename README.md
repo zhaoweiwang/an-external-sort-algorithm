@@ -4,7 +4,7 @@
 
 **keywords:**  external-sort multithreading dou2str radix-sorting merge-sort tree-of-loser high-precision block-fetch
 
-##问题描述：##
+##1. 问题描述：##
 输入文本由符合 IEEE 754 标准的 64 位的十进制浮点数构成，每两个浮点数之间以空格或者横向制表符或者换行符间隔，间隔符只有一个。不符合以上描述的文本都是非法字符。例如输入文本 input.txt： 内容如下（可能不标准，而且含有非法字符）：
 
 ```C++
@@ -25,9 +25,9 @@ hello
 6.18000000000000000E-001
 3.14159268000000000E+001
 ```
-##内核模块##
+##2. 内核模块##
 
-###读取数据###
+###2.1 读取数据###
 
 一开始，采用 fstream DataFile; DataFile >> Word; 直接逐条读取记录，在读取的过程中，采用自己编写的正则表达式去判断每一个字符串是否符合要求，结果，百万数据读取的时间为 1270.41 秒。很明显，这个方法是行不通的，为此感到无奈，走了太多弯路和浪费了太多精力，得到的却是一个糟糕的结果，不过明显可得知 I/O 次数对时间的影响有多大。随后，为了减少 I/O 次数，采用 fread()函数进行大数据块读取文件记录。
 
@@ -39,8 +39,45 @@ hello
 
 **解决方法：**
 
-利用判断语句判断是否遇到制表符、换行符和空格符等，然后截取合法子字符串，然后利用 atof()函数将其转为浮点数保存起来，这时候读取时间可以缩短到2.743 秒。但这还没有达到要求，对于 atof()系统函数的调用太耗费时间，所以这里自己写了一个字符串转字符串的函数 double Str2DouPro(const char * StrTemp)将字符串字符判断和逐步追加为 double 类型。 将其写为单独一个头文件 Str2Dou.h 以便调用。
+利用判断语句判断是否遇到制表符、换行符和空格符等，然后截取合法子字符串，然后利用 atof()函数将其转为浮点数保存起来，这时候读取时间可以缩短到2.743 秒。但这还没有达到要求，对于 atof()系统函数的调用太耗费时间，所以这里自己写了一个字符串转字符串的函数 double Str2DouPro(const char * StrTemp)将字符串字符判断和逐步追加为 double 类型。 将其写为单独一个头文件 Str2Dou.h 以便调用。其中涉及两个主要函数 judge() 函数判断合法浮点数，以及 
 
+```C++
+int judge(string str, int len){
+
+	for(int i = 0; i < len; i++){
+	
+		if((str[i] >= '0' && str[i] <= '9') || str[i] == '+' || str[i] == '-' || str[i] == '.' || str[i] == 'E' || str[i] == 'e'){
+			if(str[i] == '+' || str[i] == '-'){
+				if(i == 0 || str[i - 1] == 'E' || str[i - 1] == 'e')
+					continue;
+				else
+					return 0;
+			}
+			else if(str[i] == 'E' || str[i] == 'e'){
+				if(i != 0 && (str[i - 1] >= '0' && str[i - 1] <= '9'))
+					continue;
+				else
+					return 0;
+			}
+			else if(str[i] == '.'){
+				if(i != 0 && (str[i - 1] >= '0' && str[i - 1] <= '9') && (str[i + 1] >= '0' && str[i + 1] <= '9'))
+					continue;
+				else
+					return 0;
+			}
+			else
+				continue;
+		
+		}
+		else
+			return 0;
+	
+	}
+
+	return 1;
+
+}
+```
 
 ### 时间： ###
 
