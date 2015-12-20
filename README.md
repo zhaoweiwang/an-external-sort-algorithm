@@ -1,12 +1,12 @@
 # an-external-sort-algorithm
 
-**An implement case: external sort algorithm with 250 million double-precision floating-point number(by C++).**
+**An implement case: external sort algorithm with 250 million double-precision floating-point number (by C++).**
 
 **keywords:**  external-sort multithreading dou2str radix-sorting merge-sort tree-of-loser high-precision block-fetch
 
 ##问题描述：##
-输入文本由符合 IEEE 754 标准的 64 位的十进制浮点数构成，每两个浮点数之间以空格或者横向制表符或者换行符间隔，间隔符只有一个。不符合以上描述的文本都是非法字符。例如输入文本 input.txt 内容如下（可能不标准，而且含有非法字符）：
-**input.txt：**
+输入文本由符合 IEEE 754 标准的 64 位的十进制浮点数构成，每两个浮点数之间以空格或者横向制表符或者换行符间隔，间隔符只有一个。不符合以上描述的文本都是非法字符。例如输入文本 **input.txt：** 内容如下（可能不标准，而且含有非法字符）：
+
 ```C++
 3.14159268
 6.62e-134
@@ -17,6 +17,7 @@ hello
 ```
 
 输出文本是对输入文本排序后的结果，每个结果独占一行，需严格符合IEEE 754标准（特别要求：精确到小数点后17位），输出为普通的文本格式。非法字符可以删除，但须记录非法字符数目。理论上来说，不管谁实现的程序，对于相同的输入文本，输出的文本应该是一模一样的。例如以上的input.txt的输出结果应该是：
+
 ```C++
 -1.00000000000000000E+006
 6.62000000000000000E-134
@@ -25,7 +26,8 @@ hello
 3.14159268000000000E+001
 ```
 
-**时间：**
+### 时间： ###
+
 一百万：0.861秒
 
 一千万：7.087秒
@@ -35,7 +37,7 @@ hello
 二点五亿：211.707秒
 
 
-### **程序目前存在的不足**
+### **程序目前存在的不足：**
 
 1. 没有必要一个头文件（.h）对应一个源文件（.cpp），意义不大，反而造成定义在各个头文件中的全局参数引用混乱；
 
