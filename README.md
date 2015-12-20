@@ -39,7 +39,7 @@ hello
 
 **解决方法：**
 
-判断是否遇到制表符、换行符和空格符等，然后截取子字符串，随后利用自己写的 (judge())[https://github.com/zhaoweiwang/an-external-sort-algorithm/blob/master/an-external-sort-algorithm/Str2Dou.cpp] 函数判断其是否为合法浮点数，是则将其用自己写的 (Str2Dou())[https://github.com/zhaoweiwang/an-external-sort-algorithm/blob/master/an-external-sort-algorithm/Str2Dou.cpp] 函数将合法的str转化成double数。判断和转换的逻辑还是比较复杂，转换时需要注意逻辑。
+判断是否遇到制表符、换行符和空格符等，然后截取子字符串，随后利用自己写的 [judge()](https://github.com/zhaoweiwang/an-external-sort-algorithm/blob/master/an-external-sort-algorithm/Str2Dou.cpp) 函数判断其是否为合法浮点数，是则将其用自己写的 [Str2Dou()](https://github.com/zhaoweiwang/an-external-sort-algorithm/blob/master/an-external-sort-algorithm/Str2Dou.cpp) 函数将合法的str转化成double数。判断和转换的逻辑还是比较复杂，转换时需要注意逻辑。
 
 
 
