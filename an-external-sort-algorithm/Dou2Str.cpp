@@ -184,6 +184,5 @@ int Dou2Str(char * StrBuf, double Num){
 	* ps++= 0xA;
 	* ps = 0; 
 
-	//cout << "BBB:" << StrBuf << endl;
 	return strlen(StrBuf);  
 }
