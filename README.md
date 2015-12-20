@@ -29,55 +29,19 @@ hello
 
 ###2.1 读取数据###
 
-一开始，采用 fstream DataFile; DataFile >> Word; 直接逐条读取记录，在读取的过程中，采用自己编写的正则表达式去判断每一个字符串是否符合要求，结果，百万数据读取的时间为 1270.41 秒。很明显，这个方法是行不通的，为此感到无奈，走了太多弯路和浪费了太多精力，得到的却是一个糟糕的结果，不过明显可得知 I/O 次数对时间的影响有多大。随后，为了减少 I/O 次数，采用 fread()函数进行大数据块读取文件记录。
+这里需要注意一件事情，由于记录会有上亿条，因此不能用行读取方式读取数据，在百万数据时因为 I/O 次数频繁，时间即已破千。同时，判断浮点数是否合法也不能采用正则表达式，因为正则表达式同样极为耗时。为了减少 I/O 次数，应采用 fread() 函数进行较大数据块方式（因内存限制是500M，因此这里可以一次读取200M）读取文件记录。
 
-**这里遇到两个难题：**
+**接着会遇到两个问题：**
 
-（ 1）如何对内存中的字符串判断合法的双精度浮点数？
+（1）如何对内存中的字符串判断其是否为合法的双精度浮点数？
 
-（ 2）如何将判断得到的合法双精度浮点数转换为浮点数？
+（2）如何将判断得到的双精度浮点数字符串转换为浮点数？
 
 **解决方法：**
 
-利用判断语句判断是否遇到制表符、换行符和空格符等，然后截取合法子字符串，然后利用 atof()函数将其转为浮点数保存起来，这时候读取时间可以缩短到2.743 秒。但这还没有达到要求，对于 atof()系统函数的调用太耗费时间，所以这里自己写了一个字符串转字符串的函数 double Str2DouPro(const char * StrTemp)将字符串字符判断和逐步追加为 double 类型。 将其写为单独一个头文件 Str2Dou.h 以便调用。其中涉及两个主要函数 judge() 函数判断合法浮点数，以及 
+判断是否遇到制表符、换行符和空格符等，然后截取子字符串，随后利用自己写的 (judge())[https://github.com/zhaoweiwang/an-external-sort-algorithm/blob/master/an-external-sort-algorithm/Str2Dou.cpp] 函数判断其是否为合法浮点数，是则将其用自己写的 (Str2Dou())[https://github.com/zhaoweiwang/an-external-sort-algorithm/blob/master/an-external-sort-algorithm/Str2Dou.cpp] 函数将合法的str转化成double数。判断和转换的逻辑还是比较复杂，转换时需要注意逻辑。
 
-```C++
-int judge(string str, int len){
 
-	for(int i = 0; i < len; i++){
-	
-		if((str[i] >= '0' && str[i] <= '9') || str[i] == '+' || str[i] == '-' || str[i] == '.' || str[i] == 'E' || str[i] == 'e'){
-			if(str[i] == '+' || str[i] == '-'){
-				if(i == 0 || str[i - 1] == 'E' || str[i - 1] == 'e')
-					continue;
-				else
-					return 0;
-			}
-			else if(str[i] == 'E' || str[i] == 'e'){
-				if(i != 0 && (str[i - 1] >= '0' && str[i - 1] <= '9'))
-					continue;
-				else
-					return 0;
-			}
-			else if(str[i] == '.'){
-				if(i != 0 && (str[i - 1] >= '0' && str[i - 1] <= '9') && (str[i + 1] >= '0' && str[i + 1] <= '9'))
-					continue;
-				else
-					return 0;
-			}
-			else
-				continue;
-		
-		}
-		else
-			return 0;
-	
-	}
-
-	return 1;
-
-}
-```
 
 ### 时间： ###
 
